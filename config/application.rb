@@ -11,7 +11,6 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
-require "errors"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -29,5 +28,15 @@ module Flashcards
     config.api_only = true
 
     config.active_record.primary_key = :uuid
+
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
+    end
+
+    JSONAPI.configure do |config|
+      config.resource_key_type = :uuid
+    end
   end
 end
