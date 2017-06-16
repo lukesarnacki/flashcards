@@ -5,13 +5,12 @@ class Authentication
     @user = user
   end
 
-  def get_access_token(password:)
+  def get_auth_token(password:)
     raise AuthenticationFailed unless valid_password?(password)
 
     AuthToken.create!(
-      client_id: client_id,
-      token_hash: token_hash,
       token: token,
+      user: user,
       expires_at: Time.current
     )
   end
@@ -28,9 +27,5 @@ class Authentication
 
   def client_id
     @generate_client_id ||= SecureRandom.uuid
-  end
-
-  def token_hash
-    @token_hash ||= BCrypt::Password.create(token)
   end
 end

@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170502094905) do
   create_table "auth_tokens", force: :cascade do |t|
     t.uuid     "user_id"
     t.uuid     "client_id",  null: false
-    t.string   "token_hash", null: false
+    t.string   "token",      null: false
     t.datetime "expires_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,7 +50,8 @@ ActiveRecord::Schema.define(version: 20170502094905) do
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "name",            null: false
+    t.string   "first_name",      null: false
+    t.string   "last_name",       null: false
     t.string   "email",           null: false
     t.string   "screen_name",     null: false
     t.string   "password_digest", null: false

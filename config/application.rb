@@ -35,8 +35,6 @@ module Flashcards
       g.orm :active_record, primary_key_type: :uuid
     end
 
-    JSONAPI.configure do |config|
-      config.resource_key_type = :uuid
-    end
+    ActiveModelSerializers.config.adapter = :json_api
   end
 end

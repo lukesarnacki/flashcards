@@ -21,6 +21,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'jsonapi-resources'
 
+gem 'active_model_serializers', '~> 0.10.0'
+
+gem 'rails-rfc6570', '~> 2.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -30,7 +34,7 @@ gem 'jsonapi-resources'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.5'
   gem 'apivore'
   gem 'jsonapi-resources-matchers'
