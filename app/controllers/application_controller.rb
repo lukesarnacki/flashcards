@@ -1,3 +1,6 @@
+class AuthTokenError < StandardError
+end
+
 class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
   include JSONAPI::ActsAsResourceController
@@ -13,8 +16,12 @@ class ApplicationController < ActionController::API
   private
 
   def require_user
-    authenticate_or_request_with_http_token do |token, options|
+    authenticate_with_http_token do |token, options|
       @current_user = User.authenticate_with_token(options['email'], token)
-    end
+    end || render_unauthorized
+  end
+
+  def render_unauthorized
+    render json: { error: 'Wrong token' }, status: 401
   end
 end

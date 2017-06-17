@@ -4,15 +4,17 @@ class AuthenticationController < ApplicationController
   skip_before_action :require_user
 
   def signin
-    auth = authenticate_or_request_with_http_basic do |email, password|
-      user = User.where("lower(email) = lower(?)", email).first!
-      Authentication.new(user: user).get_auth_token(password: password)
+    auth = authenticate_with_http_basic do |email, password|
+      if user = User.where("lower(email) = lower(?)", email).first
+        Authentication.new(user: user).get_auth_token(password: password)
+      end
     end
 
-    render json: auth, serializer: AuthSerializer
-
-  rescue ActiveRecord::RecordNotFound
-    render json: 'Invalid credentials', status: 401
+    if auth
+      render json: auth, serializer: AuthSerializer
+    else
+      render json: { error: 'Invalid credentials' }, status: 401
+    end
   end
 
 end

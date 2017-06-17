@@ -1,3 +1,3 @@
-class AuthSerializer < ActiveModelSerializers::Model
+class AuthSerializer < ActiveModel::Serializer
   attributes :token, :expires_at
 end

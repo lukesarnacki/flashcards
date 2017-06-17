@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  has_many :auth_tokens
 
   def self.authenticate_with_token(email, token)
     user = where("lower(email) = lower(?)", email).first

@@ -18,12 +18,10 @@ ActiveRecord::Schema.define(version: 20170617160639) do
 
   create_table "auth_tokens", force: :cascade do |t|
     t.uuid     "user_id"
-    t.uuid     "client_id",  null: false
     t.string   "token",      null: false
     t.datetime "expires_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_auth_tokens_on_client_id", using: :btree
     t.index ["user_id"], name: "index_auth_tokens_on_user_id", using: :btree
   end
 

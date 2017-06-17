@@ -6,7 +6,7 @@ Rspec.describe 'api as state machine', type: :request do
   let(:card_1) { create :card, deck: deck }
   let(:card_2) { create :card, deck: deck }
 
-  it 'renders base URL' do
-
+  it 'allows to create a deck' do
+    response = get '/'
   end
 end

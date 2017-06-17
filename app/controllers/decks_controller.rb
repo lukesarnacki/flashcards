@@ -1,2 +1,3 @@
-class DecksController < JSONAPI::ResourceController
+class DecksController < ApplicationController
+  include JSONAPI::ActsAsResourceController
 end
