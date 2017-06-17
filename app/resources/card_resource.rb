@@ -10,16 +10,10 @@ class CardResource < JSONAPI::Resource
   has_one :deck
 
   def self.updatable_fields(*)
-    creatable_or_updatable_fields
+    super - [:created_at, :updated_at]
   end
 
   def self.creatable_fields(*)
-    creatable_or_updatable_fields
-  end
-
-  private
-
-  def creatable_or_updatable_fields
     super - [:created_at, :updated_at]
   end
 end

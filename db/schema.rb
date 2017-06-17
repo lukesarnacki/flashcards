@@ -40,12 +40,10 @@ ActiveRecord::Schema.define(version: 20170617160639) do
   end
 
   create_table "decks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "name",           null: false
-    t.string   "front_language", null: false
-    t.string   "back_language",  null: false
+    t.string   "name",       null: false
     t.uuid     "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_decks_on_user_id", using: :btree
   end
 

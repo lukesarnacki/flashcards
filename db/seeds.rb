@@ -7,14 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = User.create!(first_name: 'Jan', last_name: 'Kowalski', screen_name: 'janek', email: 'jan@example.com', password: 'secret')
-deck = Deck.create!(name: 'Animals', front_language: 'en', back_language: 'pl', user: user)
+deck = Deck.create!(name: 'Animals', user: user) #,  front_language: 'en', back_language: 'pl'
 deck.cards.create(front_text: 'Dog', back_text: 'Pies', deck: deck, status: '')
 deck.cards.create(front_text: 'Cat', back_text: 'Kot', deck: deck, status: '')
 deck.cards.create(front_text: 'Parrot', back_text: 'Papuga', deck: deck, status: '')
 deck.cards.create(front_text: 'Cow', back_text: 'Krowa', deck: deck, status: '')
 deck.cards.create(front_text: 'Hamster', back_text: 'Chomik', deck: deck, status: '')
 
-deck = Deck.create!(name: 'Feelings', front_language: 'en', back_language: 'pl', user: user)
+deck = Deck.create!(name: 'Feelings', user: user) #,  front_language: 'en', back_language: 'pl'
 deck.cards.create(front_text: 'Love', back_text: 'Kochać', deck: deck, status: '')
 deck.cards.create(front_text: 'Hate', back_text: 'Nienawidzić', deck: deck, status: '')
 deck.cards.create(front_text: 'Like', back_text: 'Lubić', deck: deck, status: '')
