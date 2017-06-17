@@ -1,0 +1,44 @@
+<alps version="1.0">
+  <doc>
+    Documentation for decks resource. It represents one deck of flashcards.
+  </doc>
+
+  <link rel="type" href="http://fiszki-api.herokuapp.com/profile/decks.xml" />
+
+  <descriptor id="name" type="semantic" />
+
+  <descriptor id="deck" name="self" type="safe" rt="decks">
+    <doc> Link to this deck.</doc>
+  </descriptor>
+
+  <descriptor id="edit-deck" name="self" type="idempotent" rt="decks">
+    <doc> Link to update this deck. </doc>
+  </descriptor>
+
+  <descriptor id="delete-deck" name="self" type="idempotent" rt="decks">
+    <doc> Link to delete this deck. </doc>
+  </descriptor>
+
+  <descriptor id="cards" rt="cards">
+    <doc>
+      Flashcards that are in this deck.
+    </doc>
+
+    <descriptor id="self" type="safe" />
+    <descriptor id="related" type="safe" rt="cards" />
+    <descriptor id="create-card" name="related" type="unsafe" rt="cards" />
+
+    <link rel="type" href="http://fiszki-api.herokuapp.com/profile/users.xml" />
+  </descriptor>
+
+  <descriptor id="user" rt="users">
+    <doc>
+      User that created this deck of flashcards.
+    </doc>
+
+    <descriptor id="self" />
+    <descriptor id="related" rt="users" />
+
+    <link rel="type" href="http://fiszki-api.herokuapp.com/profile/users.xml" />
+  </descriptor>
+</alps>

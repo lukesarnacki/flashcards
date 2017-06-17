@@ -1,0 +1,44 @@
+<alps version="1.0">
+  <doc>
+    Documentation for cards resource. It represents a flashcard.
+  </doc>
+
+  <link rel="type" href="http://herokuapp.com/profile/card.xml" />
+
+  <descriptor id="front_text" type="semantic" />
+  <descriptor id="back_text" type="semantic" />
+  <descriptor id="front_subtext" type="semantic" />
+  <descriptor id="back_subtext" type="semantic" />
+
+  <descriptor id="deck" type="semantic">
+    <doc>
+      Object representing deck relationship.
+    </doc>
+
+    <descriptor id="self" type="safe" />
+    <descriptor id="related" type="safe" rt="decks">
+      <doc>
+        Link to the deck that contains given card.
+      </doc>
+    </descriptor>
+  </descriptor>
+
+  <descriptor id="card" name="self" type="safe" rt="cards">
+    <doc>
+      Link to a flashcard.
+    </doc>
+  </descriptor>
+
+  <descriptor id="update-card" name="self" type="idempotent" rt="cards">
+    <doc>
+      Update a flashcard.
+    </doc>
+  </descriptor>
+
+  <descriptor id="delete-card" type="idempotent">
+    <doc>
+      Delete flashcard. Card needs to belong to a deck of logged in user
+      to be deleted. Error response (403) is returned otherwise.
+    </doc>
+  </descriptor>
+</alps>

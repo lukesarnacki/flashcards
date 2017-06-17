@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502094905) do
+ActiveRecord::Schema.define(version: 20170617160639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,28 @@ ActiveRecord::Schema.define(version: 20170502094905) do
     t.index ["user_id"], name: "index_decks_on_user_id", using: :btree
   end
 
+  create_table "trainings", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "user_id"
+    t.uuid     "deck_id"
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deck_id"], name: "index_trainings_on_deck_id", using: :btree
+    t.index ["user_id"], name: "index_trainings_on_user_id", using: :btree
+  end
+
+  create_table "trainings_cards", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "card_id"
+    t.uuid     "training_id"
+    t.boolean  "attempted",   default: false, null: false
+    t.boolean  "memorizeed",  default: false, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["card_id"], name: "index_trainings_cards_on_card_id", using: :btree
+    t.index ["training_id"], name: "index_trainings_cards_on_training_id", using: :btree
+  end
+
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "first_name",      null: false
     t.string   "last_name",       null: false
@@ -63,4 +85,8 @@ ActiveRecord::Schema.define(version: 20170502094905) do
   add_foreign_key "auth_tokens", "users"
   add_foreign_key "cards", "decks"
   add_foreign_key "decks", "users"
+  add_foreign_key "trainings", "decks"
+  add_foreign_key "trainings", "users"
+  add_foreign_key "trainings_cards", "cards"
+  add_foreign_key "trainings_cards", "trainings"
 end
