@@ -3,6 +3,8 @@ FactoryGirl.define do
     first_name "John"
     last_name  "Doe"
     email "john@example.com"
+    screen_name "John Doe"
+    password "secret"
   end
 
   factory :card do

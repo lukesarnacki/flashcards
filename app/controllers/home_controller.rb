@@ -12,7 +12,8 @@ class HomeController < ApplicationController
           user: users_rfc6570,
           deck: deck_rfc6570,
           card: card_rfc6570,
-          profile: profile_url
+          profile: profile_url,
+          authenticate: signin_url
         }
       }
     }
