@@ -1,13 +1,15 @@
-class AuthTokenError < StandardError
-end
-
 class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
   include JSONAPI::ActsAsResourceController
 
+  before_action :require_user
+  before_action :add_profile_url
+
   attr_reader :current_user
 
-  before_action :require_user
+  rescue_from NotAuthorizedError do |e|
+    render json: { error: 'Access Denied' }, status: 403
+  end
 
   def context
     { current_user: current_user }
@@ -15,10 +17,16 @@ class ApplicationController < ActionController::API
 
   private
 
+  def add_profile_url
+    response.headers['Link'] = "<#{request.protocol + request.host_with_port}/profile.xml>; rel=\"profile\""
+  end
+
   def require_user
-    authenticate_with_http_token do |token, options|
-      @current_user = User.authenticate_with_token(options['email'], token)
-    end || render_unauthorized
+    @current_user = authenticate_with_http_token do |token, options|
+      User.authenticate_with_token(options['email'], token)
+    end
+
+    @current_user || render_unauthorized
   end
 
   def render_unauthorized

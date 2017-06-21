@@ -3,9 +3,9 @@ class AuthenticationController < ApplicationController
 
   skip_before_action :require_user
 
-  def signin
+  def sign_in
     auth = authenticate_with_http_basic do |email, password|
-      if user = User.where("lower(email) = lower(?)", email).first
+      if user = User.with_email(email).first
         Authentication.new(user: user).get_auth_token(password: password)
       end
     end
@@ -16,5 +16,4 @@ class AuthenticationController < ApplicationController
       render json: { error: 'Invalid credentials' }, status: 401
     end
   end
-
 end

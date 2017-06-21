@@ -25,6 +25,8 @@ gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'rails-rfc6570', '~> 2.0'
 
+gem 'pundit-resources'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

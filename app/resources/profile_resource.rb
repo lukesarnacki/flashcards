@@ -1,6 +1,8 @@
 class ProfileResource < JSONAPI::Resource
   model_name 'User'
 
+  after_create :send_welcome_email
+
   attributes :first_name,
              :last_name,
              :full_name,
@@ -21,21 +23,13 @@ class ProfileResource < JSONAPI::Resource
     super - [:password, :password_confirmation]
   end
 
-  def self.updatable_fields(*)
-    creatable_or_updatable_fields
-  end
-
-  def self.creatable_fields(*)
-    creatable_or_updatable_fields
-  end
-
   def self.find_by_key(filter, options = {})
     self.new(options[:context][:current_user], options[:context])
   end
 
   private
 
-  def creatable_or_updatable_fields
-    super - [:created_at, :updated_at]
+  def send_welcome_email
+    UserMailer.welcome_email(@model).deliver_now
   end
 end

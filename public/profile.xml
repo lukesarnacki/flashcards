@@ -5,10 +5,20 @@
     in one language on one side and its translation on the other side.
   </doc>
 
+  <descriptor id="register" type="unsafe" rt="profiles">
+    <doc>Link to create user profile.</doc>
+
+    <link rel="type" href="http://fiszki-api.herokuapp.com/profile/profiles.xml" />
+  </descriptor>
+
+  <descriptor id="register" type="unsafe" rt="profiles">
+    <doc>Link to authenticate and get auth token used to authorize requests.</doc>
+
+    <link rel="type" href="http://fiszki-api.herokuapp.com/profile/auth_tokens.xml" />
+  </descriptor>
+
   <descriptor id="deck" type="safe" rt="decks">
-    <doc>
-      Link to a deck of flashcards.
-    </doc>
+    <doc>Link to a deck of flashcards.</doc>
 
     <descriptor id="id" type="semantic">
       <doc>The id of the deck in URI template.</doc>
@@ -18,23 +28,17 @@
   </descriptor>
 
   <descriptor id="decks" type="safe" rt="decks">
-    <doc>
-      Link to a collection of decks.
-    </doc>
+    <doc>Link to a collection of all decks.</doc>
     <link rel="type" href="http://fiszki-api.herokuapp.com/profile/decks.xml" />
   </descriptor>
 
   <descriptor id="create-decks" name="decks" type="unsafe" rt="decks">
-    <doc>
-      Link to create an empty deck.
-    </doc>
+    <doc>Link to create an empty deck.</doc>
     <link rel="type" href="http://fiszki-api.herokuapp.com/profile/decks.xml" />
   </descriptor>
 
   <descriptor id="users" type="safe" rt="decks">
-    <doc>
-      Collection of decks of cards.
-    </doc>
+    <doc>Collection of decks of cards.</doc>
     <link rel="type" href="http://herokuapp.com/profile/deck.xml" />
   </descriptor>
 </alps>

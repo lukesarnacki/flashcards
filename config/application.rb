@@ -38,3 +38,6 @@ module Flashcards
     ActiveModelSerializers.config.adapter = :json_api
   end
 end
+
+class NotAuthorizedError < StandardError
+end

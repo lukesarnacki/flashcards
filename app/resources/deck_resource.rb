@@ -1,6 +1,28 @@
 class DeckResource < JSONAPI::Resource
-  attributes :name#, :front_language, :back_language
+  before_update :authorize_user
+  before_remove :authorize_user
 
-   belongs_to :user
-   has_many :cards
+  has_many :trainings
+
+  attributes :name
+
+  has_one :user
+  has_many :cards
+
+  private
+
+  def trainings
+    return [] unless authorized?
+    @model.trainings
+  end
+
+  def authorize_user
+    if authorized?
+      raise NotAuthorizedError
+    end
+  end
+
+  def authorized?
+    context[:current_user] && @model.user_id != context[:current_user].id
+  end
 end

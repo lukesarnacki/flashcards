@@ -99,6 +99,13 @@ GEM
     pg (0.20.0)
     public_suffix (2.0.5)
     puma (3.8.2)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
+    pundit-resources (1.1.1)
+      activesupport
+      jsonapi-resources
+      pundit
+      rails (>= 4.2.1, < 5.1)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -188,6 +195,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   pg (~> 0.18)
   puma (~> 3.0)
+  pundit-resources
   rails (~> 5.0.2)
   rails-rfc6570 (~> 2.0)
   rb-readline

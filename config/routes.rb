@@ -3,13 +3,17 @@ Rails.application.routes.draw do
 
   get 'profile', to: 'profile#show'
   jsonapi_resources :decks do
+    jsonapi_relationships
     jsonapi_resources :cards
   end
   jsonapi_resources :cards
-  jsonapi_resources :users
+  jsonapi_resources :users do
+    jsonapi_relationships
+    jsonapi_resources :decks
+  end
   jsonapi_resources :profiles
 
-  post :signin, controller: :authentication, action: :signin
+  post :signin, controller: :authentication, action: :sign_in
 
   root to: 'home#base'
 end
