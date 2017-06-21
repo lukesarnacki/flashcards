@@ -17,7 +17,4 @@ FactoryGirl.define do
     name 'Animals / Zwierzeta'
     user
   end
-
-
-
 end

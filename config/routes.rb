@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   end
   jsonapi_resources :profiles
 
+  jsonapi_resources :trainings do
+    jsonapi_relationships
+  end
+
   post :signin, controller: :authentication, action: :sign_in
 
   root to: 'home#base'

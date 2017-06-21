@@ -37,8 +37,8 @@
     <link rel="type" href="http://fiszki-api.herokuapp.com/profile/decks.xml" />
   </descriptor>
 
-  <descriptor id="users" type="safe" rt="decks">
+  <descriptor id="users" type="safe" rt="users">
     <doc>Collection of decks of cards.</doc>
-    <link rel="type" href="http://herokuapp.com/profile/deck.xml" />
+    <link rel="type" href="http://herokuapp.com/profile/users.xml" />
   </descriptor>
 </alps>

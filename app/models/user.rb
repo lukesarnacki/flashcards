@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :auth_tokens
   has_many :decks
+  has_many :trainings
 
   validates :first_name, :last_name, :email, :screen_name, presence: true
   validates :email, format: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/

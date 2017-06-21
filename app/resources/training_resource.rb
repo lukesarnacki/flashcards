@@ -8,6 +8,12 @@ class TrainingResource < JSONAPI::Resource
   has_many :memorized_cards
 
   def score
+    return 0 if cards.count == 0
     (memorized_cards.count / cards.count).round
+  end
+
+  def self.records(options = {})
+    context = options[:context]
+    context[:current_user].trainings
   end
 end
